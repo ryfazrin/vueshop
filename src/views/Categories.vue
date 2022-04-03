@@ -9,7 +9,10 @@
           xs6
         >
           <v-card :to="'/category/' + category.slug">
-            <v-img :src="getImage('/categories/' + category.image)">
+            <v-img
+              :src="getImage('/categories/' + category.image)"
+              class="white--text"
+            >
               <v-card-title
                 class="fill-height align-end"
                 v-text="category.name"
