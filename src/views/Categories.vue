@@ -1,24 +1,23 @@
 <template>
   <div>
     <v-container class="ma-0 pa-0" grid-list-sm>
-      <v-subheader>
-        <v-layout wrap>
-          <v-flex
-            v-for="category in categories"
-            :key="`category-` + category.id"
-            xs6
-          >
-            <v-card :to="'/category/' + category.slug">
-              <v-img :src="getImage('/categories/' + category.image)">
-                <v-card-title
-                  class="fill-height align-end"
-                  v-text="category.name"
-                ></v-card-title>
-              </v-img>
-            </v-card>
-          </v-flex>
-        </v-layout>
-      </v-subheader>
+      <v-subheader> All Category </v-subheader>
+      <v-layout wrap>
+        <v-flex
+          v-for="category in categories"
+          :key="`category-` + category.id"
+          xs6
+        >
+          <v-card :to="'/category/' + category.slug">
+            <v-img :src="getImage('/categories/' + category.image)">
+              <v-card-title
+                class="fill-height align-end"
+                v-text="category.name"
+              ></v-card-title>
+            </v-img>
+          </v-card>
+        </v-flex>
+      </v-layout>
     </v-container>
   </div>
 </template>
