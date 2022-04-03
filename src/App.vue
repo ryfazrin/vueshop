@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" dark extended>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>Vueshop</v-toolbar-title>
+      <v-toolbar-title>{{ appName }}</v-toolbar-title>
 
       <v-spacer></v-spacer>
 
