@@ -18,6 +18,12 @@
           </v-card>
         </v-flex>
       </v-layout>
+      <v-pagination
+        v-model="page"
+        @input="go"
+        :length="lengthPage"
+        :total-visible="5"
+      ></v-pagination>
     </v-container>
   </div>
 </template>
@@ -27,19 +33,29 @@ export default {
   data() {
     return {
       categories: [],
+      page: 0,
+      lengthPage: 0
     }
   },
   created() {
-    let url = '/categories?page=1'
-    this.axios.get(url)
-      .then((response) => {
-        let { data } = response.data
-        this.categories = data
-      })
-      .catch((error) => {
-        let { responses } = error
-        console.log(responses)
-      })
+    this.go()
+  },
+  methods: {
+    go() {
+      let url = '/categories?page=' + this.page
+      this.axios.get(url)
+        .then((response) => {
+          let { data } = response.data
+          let { meta } = response.data
+          this.categories = data
+          this.page = meta.current_page
+          this.lengthPage = meta.last_page
+        })
+        .catch((error) => {
+          let { responses } = error
+          console.log(responses)
+        })
+    }
   },
 }
 </script>
