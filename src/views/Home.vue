@@ -16,9 +16,7 @@
         >
           <v-card :to="'/category/' + category.slug">
             <v-img
-              :src="
-                'http://larashop-api.test/images/categories/' + category.image
-              "
+              :src="getImage('/categories/' + category.image)"
               class="white--text"
             >
               <v-card-title
@@ -100,6 +98,17 @@ export default {
         let { response } = error
         console.log(response)
       })
+  },
+  methods: {
+    getImage(image) {
+      if (image != null && image.length > 0) {
+        return "http://larashop-api.test/images" + image
+      }
+      // default image jika tidak ditemukan,
+      // letakkan image ini pada folder /public/img di project Vue
+      // return "img/unavailable.png"
+      return "https://via.placeholder.com/150"
+    }
   },
 }
 </script>
