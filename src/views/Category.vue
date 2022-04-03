@@ -1,4 +1,39 @@
-<template></template>
+<template>
+  <div>
+    <v-card :to="'/category/' + category.slug" v-if="category.slug">
+      <v-img
+        :src="getImage('/categories/' + category.image)"
+        class="white--text"
+      >
+        <v-card-title
+          class="fill-height align-end"
+          v-text="category.name"
+        ></v-card-title>
+      </v-img>
+    </v-card>
+    <v-container class="ma-0 pa-0" grid-list-sm v-if="books">
+      <v-subheader> All Books </v-subheader>
+      <v-layout wrap>
+        <v-flex v-for="book in books" :key="`book-` + book.id" xs6>
+          <v-card :to="'/book/' + book.slug">
+            <v-img :src="getImage('/books/' + book.cover)">
+              <v-card-title
+                class="fill-height align-end"
+                v-text="book.title"
+              ></v-card-title>
+            </v-img>
+          </v-card>
+        </v-flex>
+      </v-layout>
+      <v-pagination
+        v-model="page"
+        @input="go"
+        :length="lengthPage"
+        :total-visible="5"
+      ></v-pagination>
+    </v-container>
+  </div>
+</template>
 
 <script>
 export default {
@@ -16,7 +51,7 @@ export default {
   methods: {
     go() {
       let { slug } = this.$route.params
-      let url = '/categories?slug/' + slug
+      let url = '/categories/slug/' + slug
       url = url + '?page=' + this.page
       url = encodeURI(url)
 
