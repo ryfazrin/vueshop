@@ -31,7 +31,16 @@ export default {
     }
   },
   created() {
-
+    let url = '/categories?page=1'
+    this.axios.get(url)
+      .then((response) => {
+        let { data } = response.data
+        this.categories = data
+      })
+      .catch((error) => {
+        let { responses } = error
+        console.log(responses)
+      })
   },
 }
 </script>
