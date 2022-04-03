@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- template categories -->
-    <v-conteiner class="ma-0 pa-0" grid-list-sm>
+    <v-container class="ma-0 pa-0" grid-list-sm>
       <div class="text-right">
         <v-btn small text to="/categories" class="blue--text">
           All Categories <v-icon>mdi-chevron-right</v-icon>
@@ -15,7 +15,12 @@
           xs6
         >
           <v-card :to="'/category/' + category.slug">
-            <v-img :src="category.image" class="white--text">
+            <v-img
+              :src="
+                'http://larashop-api.test/images/categories/' + category.image
+              "
+              class="white--text"
+            >
               <v-card-title
                 class="fill-height align-end"
                 v-text="category.name"
@@ -24,7 +29,7 @@
           </v-card>
         </v-flex>
       </v-layout>
-    </v-conteiner>
+    </v-container>
 
     <!-- template books -->
     <v-container class="ma-0 pa-0 mt-2">
@@ -54,20 +59,7 @@ export default {
   name: "Home",
   data() {
     return {
-      categories: [
-        {
-          id: 1,
-          image: "https://via.placeholder.com/150",
-          name: "Ekonomi",
-          slug: "ekonomi",
-        },
-        {
-          id: 2,
-          image: "https://via.placeholder.com/150",
-          name: "Agama",
-          slug: "agama",
-        },
-      ],
+      categories: [],
       books: [
         {
           id: 1,
@@ -99,10 +91,10 @@ export default {
   created() {
     console.log("get data categories")
     this.axios
-      .get("http://larashop-api.test/v1/categories/random/2")
+      .get("/categories/random/2")
       .then((response) => {
         let { data } = response.data
-        console.log(data)
+        this.categories = data
       })
       .catch((error) => {
         let { response } = error
