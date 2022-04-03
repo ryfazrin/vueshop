@@ -39,7 +39,7 @@
       <v-layout wrap>
         <v-flex v-for="book in books" :key="`book-` + book.id" class="pa-1" xs6>
           <v-card :to="'/book/' + book.slug">
-            <v-img :src="book.cover" class="white--text">
+            <v-img :src="getImage('/books/' + book.cover)" class="white--text">
               <v-card-title
                 class="fill-right align-end"
                 v-text="book.title"
@@ -58,32 +58,7 @@ export default {
   data() {
     return {
       categories: [],
-      books: [
-        {
-          id: 1,
-          cover: "https://via.placeholder.com/150",
-          title: "Laravel 6.0",
-          slug: "laravel-6-0",
-        },
-        {
-          id: 2,
-          cover: "https://via.placeholder.com/150",
-          title: "Vue 2.6",
-          slug: "vue-2-6",
-        },
-        {
-          id: 3,
-          cover: "https://via.placeholder.com/150",
-          title: "PHP 7.4",
-          slug: "php-7-4",
-        },
-        {
-          id: 4,
-          cover: "https://via.placeholder.com/150",
-          title: "NodeJS 14",
-          slug: "nodejs-14",
-        },
-      ],
+      books: [],
     }
   },
   created() {
@@ -93,6 +68,18 @@ export default {
       .then((response) => {
         let { data } = response.data
         this.categories = data
+      })
+      .catch((error) => {
+        let { response } = error
+        console.log(response)
+      })
+
+    console.log("get data books")
+    this.axios
+      .get("/books/top/4")
+      .then((response) => {
+        let { data } = response.data
+        this.books = data
       })
       .catch((error) => {
         let { response } = error
