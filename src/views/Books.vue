@@ -41,8 +41,7 @@ export default {
       let url = '/books?page=' + this.page
       this.axios.get(url)
         .then((response) => {
-          let { data } = response.data
-          let { meta } = response.data
+          let { data, meta } = response.data
           this.books = data
           this.page = meta.current_page
           this.lengthPage = meta.last_page
