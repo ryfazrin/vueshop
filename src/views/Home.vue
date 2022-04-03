@@ -94,7 +94,20 @@ export default {
           slug: "nodejs-14",
         },
       ],
-    };
+    }
   },
-};
+  created() {
+    console.log("get data categories")
+    this.axios
+      .get("http://larashop-api.test/v1/categories/random/2")
+      .then((response) => {
+        let { data } = response.data
+        console.log(data)
+      })
+      .catch((error) => {
+        let { response } = error
+        console.log(response)
+      })
+  },
+}
 </script>
