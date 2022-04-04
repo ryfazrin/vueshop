@@ -52,7 +52,7 @@
       <v-chip
         v-for="category in book.categories"
         :key="category.id"
-        :to="'/category/' + category - slug"
+        :to="'/category/' + category.slug"
         small
       >
         {{ category.name }}
@@ -68,7 +68,35 @@
 
 <script>
 export default {
+  data() {
+    return {
+      book: {},
+    }
+  },
+  created() {
+    this.go()
+  },
+  methods: {
+    go() {
+      let { slug } = this.$route.params
+      let url = '/books/slug/' + slug
+      // url = url + '?page=' + page
+      url = encodeURI(url)
 
+      this.axios.get(url)
+        .then((response) => {
+          let { data } = response.data
+          this.book = data
+        })
+        .catch((error) => {
+          let { responses } = error
+          console.log(responses)
+        })
+    },
+    buy() {
+      alert('buy')
+    }
+  },
 }
 </script>
 
