@@ -67,6 +67,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data() {
     return {
@@ -77,6 +79,14 @@ export default {
     this.go()
   },
   methods: {
+    ...mapActions({
+      add: 'add'
+    }),
+    buy() {
+      // alert('buy)
+      // this.$store.dispatch('add', this.book)
+      this.add(this.book)
+    },
     go() {
       let { slug } = this.$route.params
       let url = '/books/slug/' + slug
@@ -92,9 +102,6 @@ export default {
           let { responses } = error
           console.log(responses)
         })
-    },
-    buy() {
-      alert('buy')
     }
   },
 }
