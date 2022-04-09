@@ -46,9 +46,10 @@
 </template>
 
 <script>
-import BookItem from '@/components/BookItem.vue'
 export default {
-  components: { BookItem },
+  components: { 
+    BookItem: () => import(/* webpackChunkName: "book-item" */ '@/components/BookItem.vue')
+  },
   name: "Home",
   data() {
     return {
