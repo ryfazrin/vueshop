@@ -80,12 +80,12 @@ export default {
   },
   methods: {
     ...mapActions({
-      add: 'add'
+      addCart: 'add'
     }),
     buy() {
       // alert('buy)
       // this.$store.dispatch('add', this.book)
-      this.add(this.book)
+      this.addCart(this.book)
     },
     go() {
       let { slug } = this.$route.params
