@@ -129,7 +129,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: "App",
@@ -143,9 +143,13 @@ export default {
       { title: "Home", icon: "mdi-home", route: "/" },
       { title: "About", icon: "mdi-account", route: "/about" },
     ],
-    guest: true,
-    dialog: false
   }),
+  methods: {
+    ...mapActions({
+      setDialogStatus: 'dialog/setStatus',
+      setDialogComponent: 'dialog/setComponent'
+    })
+  },
   computed: {
     isHome() {
       return (this.$route.path == '/')
@@ -153,12 +157,17 @@ export default {
     ...mapGetters({
       countCart: 'cart/count',
       guest: 'auth/guest',
-      user: 'auth/user'
-    })
-  },
-  methods: {
-    closeDialog(value) {
-      this.dialog = value
+      user: 'auth/user',
+      dialogStatus: 'dialog/status',
+      currentComponent: 'dialog/component'
+    }),
+    dialog: {
+      get() {
+        return this.dialogStatus
+      },
+      set(value) {
+        this.setDialogStatus(value)
+      }
     }
   },
 };
