@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      addCart: 'add'
+      addCart: 'cart/add'
     }),
     buy() {
       // alert('buy)
