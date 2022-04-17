@@ -106,14 +106,16 @@
 
       <alert />
 
-      <v-dialog
-        v-model="dialog"
-        fullscreen
-        hide-overlay
-        transition="scale-transition"
-      >
-        <search @closed="closeDialog" />
-      </v-dialog>
+      <keep-alive>
+        <v-dialog
+          v-model="dialog"
+          fullscreen
+          hide-overlay
+          transition="dialog-bottom-transition"
+        >
+          <component :is="currentComponent" @closed="closeDialog"></component>
+        </v-dialog>
+      </keep-alive>
     </v-main>
 
     <v-card>
