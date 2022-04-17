@@ -102,6 +102,8 @@
           <router-view></router-view>
         </v-slide-y-transition>
       </v-container>
+
+      <alert />
     </v-main>
 
     <v-card>
@@ -117,6 +119,9 @@
 <script>
 export default {
   name: "App",
+  components: {
+    Alert: () => import(/* webpackChunkName: "alert" */ '@/components/Alert.vue')
+  },
   data: () => ({
     drawer: false,
     menus: [
