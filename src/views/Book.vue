@@ -80,12 +80,18 @@ export default {
   },
   methods: {
     ...mapActions({
-      addCart: 'cart/add'
+      addCart: 'cart/add',
+      setAlert: 'alert/set'
     }),
     buy() {
       // alert('buy)
       // this.$store.dispatch('add', this.book)
       this.addCart(this.book)
+      this.setAlert({
+        status: true,
+        color: 'success',
+        text: 'Added to cart'
+      })
     },
     go() {
       let { slug } = this.$route.params
