@@ -23,7 +23,7 @@
         label="Search"
         prepend-inner-icon="mdi-magnify"
         solo-inverted
-        @click="dialog = true"
+        @click="setDialogComponent('search')"
       ></v-text-field>
     </v-app-bar>
 
@@ -113,7 +113,10 @@
           hide-overlay
           transition="dialog-bottom-transition"
         >
-          <component :is="currentComponent" @closed="closeDialog"></component>
+          <component
+            :is="currentComponent"
+            @closed="setDialogStatus"
+          ></component>
         </v-dialog>
       </keep-alive>
     </v-main>
