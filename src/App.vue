@@ -23,6 +23,7 @@
         label="Search"
         prepend-inner-icon="mdi-magnify"
         solo-inverted
+        @click="dialog = true"
       ></v-text-field>
     </v-app-bar>
 
@@ -104,6 +105,15 @@
       </v-container>
 
       <alert />
+
+      <v-dialog
+        v-model="dialog"
+        fullscreen
+        hide-overlay
+        transition="scale-transition"
+      >
+        <search @closed="closeDialog" />
+      </v-dialog>
     </v-main>
 
     <v-card>
@@ -122,7 +132,8 @@ import { mapGetters } from 'vuex'
 export default {
   name: "App",
   components: {
-    Alert: () => import(/* webpackChunkName: "alert" */ '@/components/Alert.vue')
+    Alert: () => import(/* webpackChunkName: "alert" */ '@/components/Alert.vue'),
+    Search: () => import(/* webpackChunkName: "search" */ '@/components/Search.vue'),
   },
   data: () => ({
     drawer: false,
@@ -131,6 +142,7 @@ export default {
       { title: "About", icon: "mdi-account", route: "/about" },
     ],
     guest: true,
+    dialog: false
   }),
   computed: {
     isHome() {
@@ -139,6 +151,11 @@ export default {
     ...mapGetters({
       countCart: 'cart/count'
     })
-  }
+  },
+  methods: {
+    closeDialog(value) {
+      this.dialog = value
+    }
+  },
 };
 </script>
