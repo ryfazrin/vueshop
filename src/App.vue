@@ -149,7 +149,9 @@ export default {
       return (this.$route.path == '/')
     },
     ...mapGetters({
-      countCart: 'cart/count'
+      countCart: 'cart/count',
+      guest: 'auth/guest',
+      user: 'auth/user'
     })
   },
   methods: {
