@@ -1,10 +1,5 @@
 <template>
   <div>
-    <v-snackbar
-      v-model="snackbar"
-      color="success"
-      multi-line="true"
-      top="true"></v-snackbar>
     <v-card v-if="book.slug">
       <v-img
         :src="getImage('/books/' + book.cover)"
