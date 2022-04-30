@@ -59,7 +59,7 @@
           </v-list-item>
 
           <div class="pa-2" v-if="guest">
-            <v-btn block color="primary" class="mb-1">
+            <v-btn block color="primary" class="mb-1" @click="setDialogComponent('login')">
               <v-icon left>mdi-lock</v-icon>
               Login
             </v-btn>
@@ -139,6 +139,7 @@ export default {
   components: {
     Alert: () => import(/* webpackChunkName: "alert" */ '@/components/Alert.vue'),
     Search: () => import(/* webpackChunkName: "search" */ '@/components/Search.vue'),
+    Login: () => import(/* webpackChunkName: "login" */ '@/components/Login.vue'),
   },
   data: () => ({
     drawer: false,
