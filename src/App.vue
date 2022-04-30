@@ -68,7 +68,7 @@
               <v-icon left>mdi-lock</v-icon>
               Login
             </v-btn>
-            <v-btn block color="success">
+            <v-btn block color="success" @click="setDialogComponent('register')">
               <v-icon left>mdi-account</v-icon>
               Register
             </v-btn>
@@ -145,6 +145,7 @@ export default {
     Alert: () => import(/* webpackChunkName: "alert" */ '@/components/Alert.vue'),
     Search: () => import(/* webpackChunkName: "search" */ '@/components/Search.vue'),
     Login: () => import(/* webpackChunkName: "login" */ '@/components/Login.vue'),
+     Register: () => import(/* webpackChunkName: "register" */ '@/components/Register.vue'),
   },
   data: () => ({
     drawer: false,
@@ -161,7 +162,6 @@ export default {
       setAlert: 'alert/set'
     }),
     logout() {
-      console.log('token', this.user.api_token)
       let config = {
         headers: {
           'Authorization': 'Bearer ' + this.user.api_token
